@@ -3,8 +3,8 @@ package routes
 import (
 	"net/http"
 	"restful/controllers/user"
-	// "restful/controllers/userinfo"
-
+	"restful/controllers/userinfo"
+	"restful/auth"
 	"github.com/gorilla/mux"
 )
 
@@ -20,6 +20,9 @@ var routes []Route
 func init() {
 	register("POST", "/user/register", user.Register, nil)
 	register("POST", "/user/login", user.Login, nil)
+
+	register("POST", "/userinfo/add", userinfo.Add_userinfo, nil)
+	register("POST", "/userinfo/find", userinfo.Find_userinfo, auth.TokenMiddleware)
 }
 
 func NewRouter() *mux.Router {

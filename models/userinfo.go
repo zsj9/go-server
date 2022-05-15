@@ -1,6 +1,9 @@
 package models
 
+import "github.com/globalsign/mgo/bson"
+
 type Userinfo struct {
+	Id bson.ObjectId `bson:"_id" json:"id"`
 	User_id string `bson:"user_id" json:"user_id"`
 	Name string `bson:"name" json:"name"`
 	Avatar string	`bson:"avatar" json:"avatar"`

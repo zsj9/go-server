@@ -28,6 +28,13 @@ func init() {
 	globalS = s
 }
 
+// db:操作的数据库
+// collection:操作的文档(表)
+// query:查询条件
+// selector:需要过滤的数据(projection)
+// result:查询到的结果
+
+// 连接数据库
 func connect(db, collection string) (*mgo.Session, *mgo.Collection) {
 	s := globalS.Copy()
 	c := s.DB(db).C(collection)
