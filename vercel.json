@@ -1,8 +1,9 @@
 {
+  "version": 2,
   "routes": [
     {
-      "src": "./app",
-      "dest": "./app.go"
+      "src": "/user/register",
+      "dest": "controllers/user/user.go"
     }
   ]
 }
