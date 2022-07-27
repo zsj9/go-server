@@ -1,9 +1,10 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
-	"restful/controllers/user"
-	"restful/controllers/userinfo"
+	"restful/api/user"
+	"restful/api/userinfo"
 	"restful/auth"
 	"github.com/gorilla/mux"
 )
@@ -18,6 +19,9 @@ type Route struct {
 var routes []Route
 
 func init() {
+	register("GET", "/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Welcome!n")
+	}, nil)
 	register("POST", "/user/register", user.Register, nil)
 	register("POST", "/user/login", user.Login, nil)
 
