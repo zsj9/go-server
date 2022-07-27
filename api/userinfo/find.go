@@ -21,7 +21,7 @@ func Find_userinfo (w http.ResponseWriter, r *http.Request) {
 		helper.ResponseWithJson(w, http.StatusAccepted,	helper.Response{Code: http.StatusAccepted, Msg: "请输入用户id"})
 		return
 	}
-	err = models.FindOne(collection, bson.M{"user_id": userinfo.User_id}, nil, &userinfo)
+	err = models.FindOne("userinfos", bson.M{"user_id": userinfo.User_id}, nil, &userinfo)
 	if err != nil {
 		helper.ResponseWithJson(w, http.StatusInternalServerError,	helper.Response{Code: http.StatusInternalServerError, Msg: "失败"})
 	} else {

@@ -29,7 +29,7 @@ func Add_userinfo(w http.ResponseWriter, r *http.Request) {
 	}
 	userinfo.Id = bson.NewObjectId()
 	userinfo.Created_at = time.Now().UTC().Format(time.RFC3339)
-	err = models.Insert(collection, userinfo)
+	err = models.Insert("userinfos", userinfo)
 	if err != nil {
 		helper.ResponseWithJson(w, http.StatusInternalServerError,	helper.Response{Code: http.StatusInternalServerError, Msg: "注册失败"})
 	} else {

@@ -22,11 +22,11 @@ func init() {
 	register("GET", "/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "Welcome!n")
 	}, nil)
-	register("POST", "/user/register", user.Register, nil)
-	register("POST", "/user/login", user.Login, nil)
+	register("POST", "/api/user/register", user.Register, nil)
+	register("POST", "/api/user/login", user.Login, nil)
 
-	register("POST", "/userinfo/add", userinfo.Add_userinfo, nil)
-	register("POST", "/userinfo/find", userinfo.Find_userinfo, auth.TokenMiddleware)
+	register("POST", "/api/userinfo/add", userinfo.Add_userinfo, nil)
+	register("POST", "/api/userinfo/find", userinfo.Find_userinfo, auth.TokenMiddleware)
 }
 
 func NewRouter() *mux.Router {

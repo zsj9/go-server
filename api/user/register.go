@@ -24,14 +24,14 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// 根据username去查看是否存在数据
-	exist := models.IsExist(collection, bson.M{"username": user.UserName})
+	exist := models.IsExist("users", bson.M{"username": user.UserName})
 	if exist {
 		helper.ResponseWithJson(w, http.StatusAccepted,	helper.Response{Code: http.StatusAccepted, Msg: "该账号已被注册过"})
 		return
 	}
 	user.Id = bson.NewObjectId()
 	user.Created_at = time.Now().UTC().Format(time.RFC3339)
-	err = models.Insert(collection, user)
+	err = models.Insert("users", user)
 	if err != nil {
 		helper.ResponseWithJson(w, http.StatusAccepted,	helper.Response{Code: http.StatusAccepted, Msg: "注册失败"})
 	} else {

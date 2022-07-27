@@ -21,14 +21,14 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// 查询账号密码是否正确
-	exist := models.IsExist(collection, bson.M{"username": user.UserName, "password": user.Password})
+	exist := models.IsExist("users", bson.M{"username": user.UserName, "password": user.Password})
 	if exist {
 		// 登入往user表插入token
 		token, _ := auth.GenerateToken(&user)
-		err := models.FindOne(collection, bson.M{"username": user.UserName}, nil, &user)
+		err := models.FindOne("users", bson.M{"username": user.UserName}, nil, &user)
 		// fmt.Println(user)
 		user.Token = token
-		err = models.Update(collection, bson.M{"username": user.UserName}, user)
+		err = models.Update("users", bson.M{"username": user.UserName}, user)
 		if err != nil {
 			helper.ResponseWithJson(w, http.StatusAccepted,	helper.Response{Code: http.StatusAccepted, Msg: "令牌失效，登入失败"})
 			return
