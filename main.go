@@ -8,5 +8,5 @@ import (
 
 func main () {
 	router := routes.NewRouter();
-	http.ListenAndServe(":3000", router)
+	http.ListenAndServe(":8080", router)
 }
