@@ -3,8 +3,8 @@ package routes
 import (
 	"fmt"
 	"net/http"
-	"restful/api/user"
-	"restful/api/userinfo"
+	"restful/controllers/user"
+	"restful/controllers/userinfo"
 	"restful/auth"
 	"github.com/gorilla/mux"
 )
