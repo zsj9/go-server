@@ -1,12 +1,23 @@
 package main
 
 import (
-	// "fmt"
+	"fmt"
 	"net/http"
-	"restful/routes"
 )
 
-func main () {
-	router := routes.NewRouter();
-	http.ListenAndServe(":8080", router)
+type MyHandler struct{}
+
+func (MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Hello, World!")
+}
+
+func main() {
+	handler := MyHandler{}
+	server := http.Server{
+		Addr:   ":8080",
+		Handler: handler,
+	}
+	if err := server.ListenAndServe(); err != nil {
+		panic(err)
+	}
 }
